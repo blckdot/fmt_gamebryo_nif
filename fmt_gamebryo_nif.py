@@ -2421,7 +2421,7 @@ def nifConstructModelFromNif(nif):
 					pixelImageInfo[1] = 1
 					
 			#name isn't guaranteed to be unique, so make a unique name instead
-			texName = rapi.getExtensionlessName(rapi.getLocalFileName(rapi.getLastCheckedName())) + "_niftex_" + repr(len(noeTexList)) #texObject.texFileName
+			texName = texObject.texFileName if texObject.texFileName else (rapi.getExtensionlessName(rapi.getLocalFileName(rapi.getLastCheckedName())) + "_niftex_" + repr(len(noeTexList)))
 			noeTex = NoeTexture(texName, pixObject.width, pixObject.height, imageData, noeFmt)
 			if pixelImageInfo[0] > 1: #if more than 1 face, set the cubemap flag
 				noeTex.setFlags(noesis.NTEXFLAG_CUBEMAP)
